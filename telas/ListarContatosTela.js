@@ -1,44 +1,65 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import {
   View,
   StyleSheet,
-  FlatList
+  FlatList,
+  Text
 } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import BotaoCabecalho from '../components/BotaoCabecalho';
 import { Platform } from "react-native";
+import ContatoItem from '../components/ContatoItem';
+import { useSelector } from 'react-redux';
 //import ContatoItem from './components/ContatoItem';
 
 const ListarContatosTela = (props) => {
 
-  const [contatos, setContatos] = useState ([]);
-  const [contadorContatos, setContadorContatos] = useState (10);
+  //const [contatos, setContatos] = useState ([]);
+  //const [contadorContatos, setContadorContatos] = useState (10);
 
-
-  const removerContato = (KeyASerRemovida) => {
+  const contatos = useSelector(estado => estado.contatos.contatos);
+  
+  /*const removerContato = (KeyASerRemovida) => {
     setContatos(contatos => {
       return contatos.filter((contato) => {
         return contato.key !== KeyASerRemovida
       })
     })
-  }
+  }*/
 
   return (
+    /*<View style={estilos.telaPrincipalView}>
+      <View>
+        <Text>Teste</Text>
+
+        /*<FlatList 
+          data={contatos}
+          keyExtractor={contato=> contato.id}
+          renderItem={
+            contato => {
+              <ContatoItem
+                chave={contato.item.key} 
+                contato={contato.item.value} 
+                //onDelete={removerContato}
+              />
+            }
+          }
+        />   
+      </View>
+    </View>*/
     <View style={estilos.telaPrincipalView}>
-       <View>
-      <FlatList 
+      <FlatList
         data={contatos}
-        renderItem={
-          contato => (
+        keyExtractor={contato => contato.id}
+        renderItem={ contato => {
+          return (
             <ContatoItem
-              chave={contato.item.key} 
-              contato={contato.item.value} 
-              onDelete={removerContato}
+              nomeContato={contato.item.nome}
+              numeroContato={contato.item.numero}
             />
           )
-        }
-      />   
-    </View>
+        }}
+      />
     </View>
   )
 }
