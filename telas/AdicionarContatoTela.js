@@ -9,7 +9,7 @@ import {
 //import ContatoInput from '../components/ContatoInput';
 import { useDispatch } from 'react-redux';
 import * as contatosActions from '../store/contatos-actions';
-
+import TiraFoto from '../components/TiraFoto';
 
 const AdicionarContatosTela = (props) => {
 
@@ -17,10 +17,7 @@ const AdicionarContatosTela = (props) => {
   
   const [nomeContato, setNomeContato] = useState('');
   const [numeroContato, setNumeroContato] = useState('');
-  //const [contatos, setContatos] = useState ([]);
-  //const [contadorContatos, setContadorContatos] = useState (10);
-  
-  //console.log(contatos)
+  const [imagemURI, setImagemURI] = useState ();
 
   const novoNomeContato = (texto) => {
     setNomeContato(texto);
@@ -30,8 +27,12 @@ const AdicionarContatosTela = (props) => {
     setNumeroContato(texto);
   }
 
+  const fotoTirada = imagemURI => {
+    setImagemURI(imagemURI);
+  }
+
   const adicionarContato = () => {
-    dispatch(contatosActions.addContato(nomeContato, numeroContato));
+    dispatch(contatosActions.addContato(nomeContato, numeroContato, imagemURI));
     props.navigation.goBack();
   }
 
@@ -50,37 +51,39 @@ const AdicionarContatosTela = (props) => {
 
   return (
     <View style={estilos.telaPrincipalView}>
-    <View style={estilos.lembreteView}>
-      <View style={estilos.textoEInput}>
-        <Text style={estilos.text}>Nome:    </Text>
-        <TextInput 
-          placeholder="Nome Sobrenome"
-          style={estilos.contatoTextInput}
-          onChangeText={novoNomeContato}
-          value={nomeContato}
+      <View style={estilos.lembreteView}>
+        <View style={estilos.textoEInput}>
+          <Text style={estilos.text}>Nome:    </Text>
+          <TextInput 
+            placeholder="Nome Sobrenome"
+            style={estilos.contatoTextInput}
+            onChangeText={novoNomeContato}
+            value={nomeContato}
+          />
+        </View>
+
+        <View style={estilos.textoEInput}>
+          <Text>Numero:</Text>
+          <TextInput 
+            placeholder="(11) 91111-1111"
+            style={estilos.contatoTextInput}
+            onChangeText={novoNumeroContato}
+            value={numeroContato}
+          />
+        </View>
+
+        <TiraFoto onFotoTirada={fotoTirada}/>
+
+        <Button 
+          title="inserir"
+          color="#2bb140"
+          onPress={() => {
+            adicionarContato()
+            setNomeContato('')
+            setNumeroContato('')
+          }}
         />
       </View>
-
-      <View style={estilos.textoEInput}>
-        <Text>Numero:</Text>
-        <TextInput 
-          placeholder="(11) 91111-1111"
-          style={estilos.contatoTextInput}
-          onChangeText={novoNumeroContato}
-          value={numeroContato}
-        />
-      </View>
-
-      <Button 
-        title="inserir"
-        color="#2bb140"
-        onPress={() => {
-          adicionarContato()
-          setNomeContato('')
-          setNumeroContato('')
-        }}
-      />
-    </View>
     </View>
   )
 
