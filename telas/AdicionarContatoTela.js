@@ -6,7 +6,6 @@ import {
   Button,
   StyleSheet
 } from 'react-native';
-//import ContatoInput from '../components/ContatoInput';
 import { useDispatch } from 'react-redux';
 import * as contatosActions from '../store/contatos-actions';
 import TiraFoto from '../components/TiraFoto';
@@ -35,19 +34,6 @@ const AdicionarContatosTela = (props) => {
     dispatch(contatosActions.addContato(nomeContato, numeroContato, imagemURI));
     props.navigation.goBack();
   }
-
-  /*const adicionarContato = (contato) => {
-    setContatos ((contatos) => {
-      setContadorContatos (contadorContatos + 2);
-      return [{key: contadorContatos.toString(), value:contato}, ...contatos]
-    });
-  }*/
-
-  /*return (
-    <View style={estilos.telaPrincipalView}>
-      <ContatoInput onAdicionarContato={adicionarContato}></ContatoInput>
-    </View>
-  )*/
 
   return (
     <View style={estilos.telaPrincipalView}>
