@@ -31,7 +31,7 @@ const AdicionarContatosTela = (props) => {
   }
 
   const adicionarContato = () => {
-    dispatch(contatosActions.addContato(nomeContato, numeroContato, imagemURI));
+    dispatch(contatosActions.addContato(nomeContato, imagemURI, numeroContato));
     props.navigation.goBack();
   }
 

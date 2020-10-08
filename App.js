@@ -7,8 +7,8 @@ import reduxThunk from 'redux-thunk';
 import contatosReducer from './store/contatos-reducer';
 
 import { init } from './helpers/db';
-
-init()
+ 
+init() 
 .then(() => {
   console.log("🚀 criação da base feita com sucesso");
 })
