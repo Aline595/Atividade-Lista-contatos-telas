@@ -16,7 +16,9 @@ export const addContato = (nomeContato, imagemURI, numeroContato) => {
       const resultadoDB = await inserirContato(
         nomeContato,
         novoPath,
-        numeroContato
+        numeroContato,
+        48.8584,
+        2.2984
       )
       console.log(resultadoDB);
       dispath ({ type: ADD_CONTATO, dadosContato: {id: resultadoDB.insertId, nomeContato: nomeContato, imagemURI: novoPath, numeroContato: numeroContato}})

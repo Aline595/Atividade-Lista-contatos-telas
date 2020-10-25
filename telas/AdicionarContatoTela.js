@@ -9,6 +9,7 @@ import {
 import { useDispatch } from 'react-redux';
 import * as contatosActions from '../store/contatos-actions';
 import TiraFoto from '../components/TiraFoto';
+import CapituraLocalizacao from '../components/CapturarLocalizacao';
 
 const AdicionarContatosTela = (props) => {
 
@@ -59,7 +60,7 @@ const AdicionarContatosTela = (props) => {
         </View>
 
         <TiraFoto onFotoTirada={fotoTirada}/>
-
+        <CapituraLocalizacao/>
         <Button 
           title="inserir"
           color="#2bb140"

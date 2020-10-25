@@ -3,6 +3,8 @@ import * as SQLite from 'expo-sqlite';
 
 const db = SQLite.openDatabase('contatos.db');
 
+
+
 export const init = () => {
   const promise = new Promise ((resolve, reject) => {
     db.transaction((tx) => {
@@ -10,7 +12,10 @@ export const init = () => {
           id INTEGER PRIMARY KEY,
           nome TEXT NOT NULL,
           imagemURI TEXT NOT NULL,
-          numero TEXT NOT NULL
+          numero TEXT NOT NULL,
+          lat REAL NOT NULL,
+          lng REAL NOT NULL,
+          horario NUMBER NOT NULL
         );`,
         [],
         () => {resolve()},
@@ -28,8 +33,11 @@ export const inserirContato = (nomeContato, imagemURI, numeroContato) => {
         `INSERT INTO tb_contato (
           nome, 
           imagemURI, 
-          numero) 
-          VALUES (?, ?, ?);`,
+          numero,
+          lat,
+          lng,
+          horario) 
+          VALUES (?, ?, ?, ?, ?, ?);`,
         [ nomeContato, imagemURI, numeroContato ],
         ( _, resultado) => {resolve(resultado)},
         ( _, err)=> {reject(err)}
@@ -52,3 +60,4 @@ export const buscarContatos = () => {
   });
   return promise;
 }
+
