@@ -27,18 +27,19 @@ const CapituraLocalizacao = (props) => {
   
   const capiturarLocalizacao = async () => {
     const temPermissao = verificarPermissoes();
-    console.log(temPermissao);
+    //console.log(temPermissao);
     
     if(temPermissao){
       try {
         setEstaCapturando(true);
-        const localização = await Location.getCurrentPositionAsync({timeout: 8000});
+        const localizacao = await Location.getCurrentPositionAsync({timeout: 8000});
         setLocalizacao({
           lat: localizacao.coords.latitude,
           lng: localizacao.coords.longitude,
           horario: localizacao.timestamp
         });
-        console.log(localização);
+        //console.log(localizacao);
+        //console.log("Estou aqui");
       } catch (err) {
         Alert.alert(
           "Impossível obter localizaçaõ",
